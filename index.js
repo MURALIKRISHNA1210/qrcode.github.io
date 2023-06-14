@@ -248,8 +248,8 @@ const timeTable = [
     func: startCamera
   },
   {
-    startTime: '16:14',
-    endTime: '16:35',
+    startTime: '15:14',
+    endTime: '24:00',
     func: startCamera
   },
   // Add more time entries as needed
@@ -271,6 +271,7 @@ function checkTimeAndExecute() {
   if(level!=false) {
     stopCamera();
     const nextTimeLine = getNextTimeLine();
+    console.log(nextTimeLine)
     if (nextTimeLine) {
       showAlert(`Sorry! Camera Will Start At ${nextTimeLine.startTime}`);
     }
