@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>QR Code Scanner</title>
+</head>
+<body id="body">
+  <h1 class="title-name">
+    <img src="title.jpeg" alt="Sathyabama" width="1000rem" height="100%" />
+  </h1>
+  <nav class="navbar" id="navbar">
+    <ul>
+      <img src="logo.png" alt="" class="logo" width="50px" />
+    </ul>
+    <ul class="list">
+      <li class="list-items" onclick="router('time-table','student-attendance', 'qrcode')">Scan QR code</li>
+      <li class="list-items" onclick="router('time-table','qrcode', 'student-attendance')">Update Attendance</li>
+      <li class="list-items" onclick="router('qrcode', 'student-attendance','time-table')" id="time-table-head"> Time Table</li>
+    </ul>
+  </nav>
+  <div class="space" id="space">
+    <p class="word">what</p>
+    <div class="alert-container" id="alert-container"></div>
+  </div>
+  <div id="student-attendance">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col" class="heads">Sno</th>
+          <th scope="col" class="heads">Date</th>
+          <th scope="col" class="heads">Hour</th>
+          <th scope="col" class="heads">Subject</th>
+          <th scope="col" class="heads">Attendance Status</th>
+          <th scope="col" class="heads">Register Number</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr>
+          <td class="head">1</td>
+          <td class="head">2023-06-01</td>
+          <td class="head">09:00 AM</td>
+          <td class="head">Mathematics</td>
+          <td class="head">Present</td>
+          <td class="head">123456</td>
+        </tr> -->
+      </tbody>
+    </table>
+  </div>
+  <div class="wrapper" id="wrapper">
+    <div id="qrcode" style="display: none; width: 100%">
+      <h2 id="head2">
+        Scan QR Code
+        <div class="color">
+          <div id="qr-img"></div>
+        </div>
+      </h2>
+      <video id="scanner" muted width="100%"></video>
+    </div>
+  </div>
+  <section id="time-table">
+    <div id="week-table">
+      <h1  style="display:flex;justify-content:center">Time Table</h1>
+      <table class="time_table">
+        <tr>
+          <th class="table-head">Day</th>
+          <th class="table-head">Period 1</th>
+          <th class="table-head">Period 2</th>
+          <th class="table-head">Period 3</th>
+          <th class="table-head">Period 4</th>
+          <th class="table-head">Period 5</th>
+          <th class="table-head">Period 6</th>
+        </tr>
+        <tr>
+          <td class="table-head">Monday</td>
+          <td class="table-head" id="Monday-period-1">Math</td>
+          <td class="table-head" id="Monday-period-2">English</td>
+          <td class="table-head" id="Monday-period-3">DBMS</td>
+          <td class="table-head" id="Monday-period-4">Data Science</td>
+          <td class="table-head" id="Monday-period-5">Machine Learning</td>
+          <td class="table-head" id="Monday-period-6">NLP</td>
+        </tr>
+        <tr>
+          <td class="table-head">Tuesday</td>
+          <td class="table-head" id="Tuesday-period-1">Math</td>
+          <td class="table-head" id="Tuesday-period-2">English</td>
+          <td class="table-head" id="Tuesday-period-3">DBMS</td>
+          <td class="table-head" id="Tuesday-period-4">Data Science</td>
+          <td class="table-head" id="Tuesday-period-5">Machine Learning</td>
+          <td class="table-head" id="Tuesday-period-6">NLP</td>
+        </tr>
+        <tr>
+          <td class="table-head">Wednesday</td>
+          <td class="table-head" id="Wednesday-period-1">Math</td>
+          <td class="table-head" id="Wednesday-period-2">English</td>
+          <td class="table-head" id="Wednesday-period-3">DBMS</td>
+          <td class="table-head" id="Wednesday-period-4">Data Science</td>
+          <td class="table-head" id="Wednesday-period-5">Machine Learning</td>
+          <td class="table-head" id="Wednesday-period-6">NLP</td>
+        </tr>
+        <tr>
+          <td class="table-head">Thursday</td>
+          <td class="table-head" id="Thursday-period-1">Math</td>
+          <td class="table-head" id="Thursday-period-2">English</td>
+          <td class="table-head" id="Thursday-period-3">DBMS</td>
+          <td class="table-head" id="Thursday-period-4">Data Science</td>
+          <td class="table-head" id="Thursday-period-5">Machine Learning</td>
+          <td class="table-head" id="Thursday-period-6">NLP</td>
+        </tr>
+        <tr>
+          <td class="table-head">Friday</td>
+          <td class="table-head" id="Friday-period-1">Math</td>
+          <td class="table-head" id="Friday-period-2">English</td>
+          <td class="table-head" id="Friday-period-3">DBMS</td>
+          <td class="table-head" id="Friday-period-4">Data Science</td>
+          <td class="table-head" id="Friday-period-5">Machine Learning</td>
+          <td class="table-head" id="Friday-period-6">NLP</td>
+        </tr>
+        <tr>
+          <td class="table-head">Saturday</td>
+          <td class="table-head" id="Saturday-period-1">Math</td>
+          <td class="table-head" id="Saturday-period-2">English</td>
+          <td class="table-head" id="Saturday-period-3">DBMS</td>
+          <td class="table-head" id="Saturday-period-4">Data Science</td>
+          <td class="table-head" id="Saturday-period-5">Machine Learning</td>
+          <td class="table-head" id="Saturday-period-6">NLP</td>
+        </tr>
+      </table>
+      <button class="btn" onclick="EditTimeTable()">Edit Time Table</button>
+    </div>
+    <div id="edit-time-table">
+      <div class="container">
+        <div class="selections">
+          <span class="choose">Choose Day</span>
+          <span class="choose">Choose Period</span>
+        </div>
+        <div class="dropdowns">
+          <div class="dropdown">
+            <div class="select">
+              <span style="color:black">Select Day</span>
+              <i class="fa fa-chevron-left"></i>
+            </div>
+            <input type="hidden" name="gender" id="dayDropdown">
+            <ul class="dropdown-menu">
+              <li style="color:black">Monday</li>
+              <li style="color:black">Tuesday</li>
+              <li style="color:black">Wednesday</li>
+              <li style="color:black">Thursday</li>
+              <li style="color:black">Friday</li>
+              <li style="color:black">Saturday</li>
+            </ul>
+          </div>
+          
+          <div class="dropdown">
+            <div class="select">
+              <span style="color:black">Select Period</span>
+              <i class="fa fa-chevron-left"></i>
+            </div>
+            <input type="hidden" name="gender" id="periodDropdown">
+            <ul class="dropdown-menu">
+              <li style="color:black">1</li>
+              <li style="color:black">2</li>
+              <li style="color:black">3</li>
+              <li style="color:black">4</li>
+              <li style="color:black">5</li>
+              <li style="color:black">6</li>
+            </ul>
+          </div>        
+        </div>
+      </div>
+      <div style='display:flex;justify-content:center'>
+        <button class="btn" onclick="getDropdownValues()">Edit Subject</button>
+      </div>
+    </div>
+  </section>
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
